@@ -1,5 +1,11 @@
 ﻿# 🏠 SmartHomeDashboard
 
+![C#](https://img.shields.io/badge/C%23-.NET-512BD4?logo=dotnet)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-MVC-512BD4?logo=dotnet)
+![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework-Core-512BD4)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-Database-CC2927?logo=microsoftsqlserver)
+![GitHub](https://img.shields.io/badge/GitHub-Versionamento-181717?logo=github)
+
 Sistema web para gerenciamento e monitoramento de dispositivos de automação residencial, desenvolvido como projeto de estudo e portfólio.
 
 ## 🖥️ Demonstração
