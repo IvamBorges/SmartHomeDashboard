@@ -6,7 +6,6 @@ Sistema web para gerenciamento e monitoramento de dispositivos de automação re
 
 ![Dashboard do SmartHomeDashboard](docs/dashboard.png)
 
-
 ## 🚀 Tecnologias utilizadas
 
 - C#
