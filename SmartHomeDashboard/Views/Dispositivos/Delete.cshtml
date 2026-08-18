@@ -1,0 +1,52 @@
+﻿@model SmartHomeDashboard.Models.Dispositivo
+
+@{
+    ViewData["Title"] = "Excluir Dispositivo";
+}
+
+<h1>Excluir Dispositivo</h1>
+
+<p>Tem certeza que deseja excluir este dispositivo?</p>
+
+<div>
+    <h3>@Model.Nome</h3>
+
+    <p>
+        <strong>Ambiente:</strong>
+        @Model.Ambiente
+    </p>
+
+    <p>
+        <strong>Protocolo:</strong>
+        @Model.Protocolo
+    </p>
+
+    <p>
+        <strong>Fabricante:</strong>
+        @Model.Fabricante
+    </p>
+
+    <p>
+        <strong>Modelo:</strong>
+        @Model.Modelo
+    </p>
+</div>
+
+<form asp-controller="Dispositivos"
+      asp-action="DeleteConfirmed"
+      method="post">
+
+    <input type="hidden"
+           name="id"
+           value="@Model.Id" />
+
+    <button type="submit">
+        Confirmar exclusão
+    </button>
+
+    <a asp-controller="Dispositivos"
+       asp-action="Index">
+        Cancelar
+    </a>
+
+</form>

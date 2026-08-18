@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Smart Home</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/SmartHomeDashboard.styles.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar" id="sidebar">
+
+            <!-- LOGO -->
+            <div class="sidebar-brand">
+
+                <div class="brand-icon">
+                    ⌂
+                </div>
+
+                <div class="brand-text">
+                    <strong>SMART</strong>
+                    <span>HOME</span>
+                </div>
+
+            </div>
+
+            <!-- NAVEGAÇÃO -->
+            <nav class="sidebar-nav">
+
+                <span class="nav-title">
+                    MENU
+                </span>
+
+                <a class="sidebar-link active"
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    <span class="sidebar-icon">▦</span>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+
+                <a class="sidebar-link" href="#">
+
+                    <span class="sidebar-icon">⌂</span>
+
+                    <span>Ambientes</span>
+
+                </a>
+
+
+                <a class="sidebar-link"
+                   asp-controller="Dispositivos"
+                   asp-action="Index">
+
+                    <span class="sidebar-icon">⚡</span>
+
+                    <span>Dispositivos</span>
+
+                    <span class="nav-badge">5</span>
+
+                </a>
+
+
+                <a class="sidebar-link" href="#">
+
+                    <span class="sidebar-icon">◉</span>
+
+                    <span>Automações</span>
+
+                </a>
+
+
+                <a class="sidebar-link" href="#">
+
+                    <span class="sidebar-icon">▤</span>
+
+                    <span>Histórico</span>
+
+                </a>
+
+            </nav>
+
+
+            <!-- HUB -->
+            <div class="hub-card">
+
+                <div class="hub-header">
+
+                    <div class="hub-icon">
+                        Z
+                    </div>
+
+                    <div>
+                        <strong>Hub EKAZA</strong>
+                        <span>Gateway Zigbee</span>
+                    </div>
+
+                </div>
+
+
+                <div class="hub-status">
+
+                    <span class="hub-status-dot"></span>
+
+                    Online
+
+                </div>
+
+                <div class="hub-devices">
+                    3 dispositivos conectados
+                </div>
+
+            </div>
+
+
+            <!-- CONFIGURAÇÕES -->
+            <div class="sidebar-bottom">
+
+                <a class="sidebar-link" href="#">
+
+                    <span class="sidebar-icon">⚙</span>
+
+                    <span>Configurações</span>
+
+                </a>
+
+                <div class="system-version">
+                    Smart Home v1.0
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <div class="main-wrapper">
+
+            <!-- BARRA MOBILE -->
+            <header class="mobile-header">
+
+                <button class="menu-button"
+                        type="button"
+                        id="menuButton">
+
+                    ☰
+
+                </button>
+
+                <strong>
+                    SMART HOME
+                </strong>
+
+                <span class="mobile-online"></span>
+
+            </header>
+
+
+            <main class="main-content">
+
+                @RenderBody()
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- FUNDO MOBILE -->
+    <div class="sidebar-overlay"
+         id="sidebarOverlay">
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true">
+    </script>
+
+
+    <!-- MENU RESPONSIVO -->
+    <script>
+
+            const menuButton =
+                document.getElementById("menuButton");
+
+            const sidebar =
+                document.getElementById("sidebar");
+
+            const overlay =
+                document.getElementById("sidebarOverlay");
+
+
+            function openSidebar() {
+
+                sidebar.classList.add("open");
+
+                overlay.classList.add("show");
+
+            }
+
+
+            function closeSidebar() {
+
+                sidebar.classList.remove("open");
+
+                overlay.classList.remove("show");
+
+            }
+
+
+            menuButton?.addEventListener(
+                "click",
+                openSidebar
+            );
+
+
+            overlay?.addEventListener(
+                "click",
+                closeSidebar
+            );
+
+    </script>
+
+
+    @await RenderSectionAsync(
+        "Scripts",
+        required: false
+    )
+
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+﻿@model List<SmartHomeDashboard.Models.Dispositivo>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-page">
+
+    <section class="dashboard-header">
+        <div>
+            <p class="dashboard-eyebrow">SMART HOME</p>
+            <h1>Minha Casa</h1>
+            <span>Visão geral da automação residencial</span>
+        </div>
+
+        <div class="dashboard-status">
+            <span class="status-dot"></span>
+            Sistema online
+        </div>
+    </section>
+
+    <section class="summary-grid">
+
+        <article class="summary-card">
+            <div class="summary-icon purple">⌂</div>
+
+            <div>
+                <span>Dispositivos</span>
+
+                <strong>
+                    @Model.Count
+                </strong>
+
+                <small>
+                    @Model.Count(d => d.Online) online
+                </small>
+            </div>
+        </article>
+
+        <article class="summary-card">
+            <div class="summary-icon blue">Z</div>
+
+            <div>
+                <span>Zigbee</span>
+
+                <strong>
+                    @Model.Count(d => d.Protocolo == "Zigbee")
+                </strong>
+
+                <small>Hub EKAZA</small>
+            </div>
+        </article>
+
+        <article class="summary-card">
+            <div class="summary-icon cyan">Wi</div>
+
+            <div>
+                <span>Wi-Fi</span>
+
+                <strong>
+                    @Model.Count(d => d.Protocolo == "Wi-Fi")
+                </strong>
+
+                <small>Conexão direta</small>
+            </div>
+        </article>
+
+        <article class="summary-card">
+            <div class="summary-icon green">⌁</div>
+
+            <div>
+                <span>Ambientes</span>
+
+                <strong>
+                    @(Model.Select(d => d.Ambiente).Distinct().Count())
+                </strong>
+
+                <small>Monitorados</small>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="dashboard-grid">
+
+        <div class="dashboard-panel rooms-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">AMBIENTES</span>
+                    <h2>Cômodos</h2>
+                </div>
+
+                <a href="#">Ver todos</a>
+            </div>
+
+            <div class="rooms-grid">
+
+                @foreach (var ambiente in Model
+                    .GroupBy(d => d.Ambiente)
+                    .OrderBy(g => g.Key))
+                {
+                    var totalDispositivos = ambiente.Count();
+
+                    var ligados = ambiente.Count(d => d.Ligado);
+
+                    var icone = ambiente.Key switch
+                    {
+                        "Sala" => "💡",
+                        "Cozinha" => "🍳",
+                        "Quarto" => "🛏️",
+                        "Banheiro" => "🚿",
+                        _ => "🏠"
+                    };
+
+                    <div class="room-card">
+
+                        <div class="room-icon">
+                            @icone
+                        </div>
+
+                        <div>
+                            <strong>
+                                @ambiente.Key
+                            </strong>
+
+                            <span>
+                                @totalDispositivos
+                                @(totalDispositivos == 1
+                                    ? "dispositivo"
+                                    : "dispositivos")
+                            </span>
+                        </div>
+
+                        @if (ligados > 0)
+                        {
+                            <span class="room-online">
+                                @ligados
+                                @(ligados == 1
+                                    ? "ligado"
+                                    : "ligados")
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="room-offline">
+                                desligado
+                            </span>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-panel climate-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">AMBIENTE</span>
+                    <h2>Clima</h2>
+                </div>
+            </div>
+
+            <div class="temperature">
+
+                <div class="temperature-ring">
+
+                    <div>
+                        @if (ViewBag.Clima != null)
+                        {
+                            <strong>@ViewBag.Clima.Temperatura.ToString("0.0")°</strong>
+                            <span>Temperatura externa</span>
+                        }
+                        else
+                        {
+                            <strong>--°</strong>
+                            <span>Indisponível</span>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="climate-info">
+
+                <div>
+                    <div>
+                        <span>Umidade</span>
+
+                        @if (ViewBag.Clima != null)
+                        {
+                            <strong>@ViewBag.Clima.Umidade%</strong>
+                        }
+                        else
+                        {
+                            <strong>--%</strong>
+                        }
+                    </div>
+                </div>
+
+                <div>
+                    <span>Conforto</span>
+                    <strong class="green-text">
+                        Bom
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="dashboard-grid lower-grid">
+
+        <div class="dashboard-panel devices-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">CONTROLE</span>
+                    <h2>Dispositivos</h2>
+                </div>
+            </div>
+
+            <div class="device-list">
+
+                @foreach (var dispositivo in Model)
+                {
+                    var iconeDispositivo =
+                        dispositivo.Protocolo == "Zigbee"
+                            ? "💡"
+                            : "🔌";
+
+                    <div class="device-item">
+
+                        <div class="device-main">
+
+                            <div class="device-icon">
+                                @iconeDispositivo
+                            </div>
+
+                            <div>
+                                <strong>
+                                    @dispositivo.Nome
+                                </strong>
+
+                                <span>
+                                    @dispositivo.Ambiente •
+                                    @dispositivo.Protocolo
+                                </span>
+                            </div>
+
+                        </div>
+
+                        @if (dispositivo.Ligado)
+                        {
+                            <button class="device-toggle active">
+                                Ligado
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="device-toggle">
+                                Desligado
+                            </button>
+                        }
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+        <div class="dashboard-panel actions-panel">
+
+            <div class="panel-header">
+                <div>
+                    <span class="panel-subtitle">ATALHOS</span>
+                    <h2>Ações rápidas</h2>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+
+                <button>
+                    <span>💡</span>
+                    Desligar tudo
+                </button>
+
+                <button>
+                    <span>🌙</span>
+                    Modo noite
+                </button>
+
+                <button>
+                    <span>🏠</span>
+                    Cheguei
+                </button>
+
+                <button>
+                    <span>🚪</span>
+                    Sair de casa
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>

@@ -1,0 +1,51 @@
+﻿@model SmartHomeDashboard.Models.Dispositivo
+
+@{
+    ViewData["Title"] = "Cadastrar Dispositivo";
+}
+
+<h1>Cadastrar Dispositivo</h1>
+
+<p>
+    <form asp-controller="Dispositivos"
+          asp-action="Create"
+          method="post">
+
+        <div>
+            <label asp-for="Nome">Nome</label>
+            <input asp-for="Nome" />
+        </div>
+
+        <div>
+            <label asp-for="Ambiente">Ambiente</label>
+            <input asp-for="Ambiente" />
+        </div>
+
+        <div>
+            <label asp-for="Protocolo">Protocolo</label>
+            <input asp-for="Protocolo" />
+        </div>
+
+        <div>
+            <label asp-for="Fabricante">Fabricante</label>
+            <input asp-for="Fabricante" />
+        </div>
+
+        <div>
+            <label asp-for="Modelo">Modelo</label>
+            <input asp-for="Modelo" />
+        </div>
+
+        <div>
+            <label asp-for="Online">Online</label>
+            <input asp-for="Online" type="checkbox" />
+        </div>
+
+        <div>
+            <label asp-for="Ligado">Ligado</label>
+            <input asp-for="Ligado" type="checkbox" />
+        </div>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>.</p>

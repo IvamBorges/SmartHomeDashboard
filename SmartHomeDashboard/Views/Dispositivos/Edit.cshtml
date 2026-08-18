@@ -1,0 +1,54 @@
+﻿@model SmartHomeDashboard.Models.Dispositivo
+
+@{
+    ViewData["Title"] = "Editar Dispositivo";
+}
+
+<h1>Editar Dispositivo</h1>
+
+<p>Editando: <strong>@Model.Nome</strong></p>
+
+<form asp-controller="Dispositivos"
+      asp-action="Edit"
+      method="post">
+
+    <input asp-for="Id" type="hidden" />
+
+    <div>
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" />
+    </div>
+
+    <div>
+        <label asp-for="Ambiente">Ambiente</label>
+        <input asp-for="Ambiente" />
+    </div>
+
+    <div>
+        <label asp-for="Protocolo">Protocolo</label>
+        <input asp-for="Protocolo" />
+    </div>
+
+    <div>
+        <label asp-for="Fabricante">Fabricante</label>
+        <input asp-for="Fabricante" />
+    </div>
+
+    <div>
+        <label asp-for="Modelo">Modelo</label>
+        <input asp-for="Modelo" />
+    </div>
+
+    <div>
+        <label asp-for="Online">Online</label>
+        <input asp-for="Online" type="checkbox" />
+    </div>
+
+    <div>
+        <label asp-for="Ligado">Ligado</label>
+        <input asp-for="Ligado" type="checkbox" />
+    </div>
+
+    <button type="submit">Salvar alterações</button>
+
+</form>

@@ -1,0 +1,99 @@
+﻿@model List<SmartHomeDashboard.Models.Dispositivo>
+
+@{
+    ViewData["Title"] = "Dispositivos";
+}
+
+<h1>Meus Dispositivos</h1>
+
+<p>Total de dispositivos: <strong>@Model.Count</strong></p>
+
+<a asp-controller="Dispositivos"
+   asp-action="Create"
+   class="btn-add-device">
+    + Adicionar dispositivo
+</a>
+
+<div class="devices-grid">
+
+    @foreach (var dispositivo in Model)
+    {
+        <div class="device-card">
+
+            <div class="device-header">
+                <div>
+                    <h3>@dispositivo.Nome</h3>
+                    <span class="device-room">
+                        @dispositivo.Ambiente
+                    </span>
+                </div>
+
+                @if (dispositivo.Online)
+                {
+                    <span class="status-online">
+                        ● Online
+                    </span>
+                }
+                else
+                {
+                    <span class="status-offline">
+                        ● Offline
+                    </span>
+                }
+            </div>
+
+            <a asp-controller="Dispositivos"
+               asp-action="Edit"
+               asp-route-id="@dispositivo.Id"
+               class="btn-edit-device">
+                Editar
+            </a>
+            <a asp-controller="Dispositivos"
+               asp-action="Delete"
+               asp-route-id="@dispositivo.Id"
+               class="btn-delete-device">
+                Excluir
+            </a>
+
+            <div class="device-info">
+
+                <div>
+                    <span>Protocolo</span>
+                    <strong>@dispositivo.Protocolo</strong>
+                </div>
+
+                <div>
+                    <span>Fabricante</span>
+                    <strong>@dispositivo.Fabricante</strong>
+                </div>
+
+                <div>
+                    <span>Modelo</span>
+                    <strong>@dispositivo.Modelo</strong>
+                </div>
+
+            </div>
+
+            <div class="device-footer">
+
+                <span>Estado</span>
+
+                @if (dispositivo.Ligado)
+                {
+                    <strong class="device-on">
+                        ● Ligado
+                    </strong>
+                }
+                else
+                {
+                    <strong class="device-off">
+                        ● Desligado
+                    </strong>
+                }
+
+            </div>
+
+        </div>
+    }
+
+</div>
