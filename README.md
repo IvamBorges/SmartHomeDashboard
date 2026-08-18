@@ -95,3 +95,22 @@ wwwroot — arquivos CSS, JavaScript e recursos estáticos
 Este projeto foi desenvolvido com o objetivo de aplicar conhecimentos de desenvolvimento web com C#, ASP.NET Core MVC, Entity Framework Core, SQL Server e integração com APIs.
 
 O projeto também faz parte do meu portfólio de desenvolvimento de software.
+
+## ▶️ Como executar o projeto
+
+### Pré-requisitos
+
+Antes de executar o projeto, é necessário ter instalado:
+
+- .NET 10 SDK
+- Visual Studio 2022
+- SQL Server
+- SQL Server Management Studio (SSMS)
+- Git
+
+### Executando o projeto
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/IvamBorges/SmartHomeDashboard.git
