@@ -19,7 +19,7 @@ Sistema web para gerenciamento e monitoramento de dispositivos de automação re
 - API REST
 - Open-Meteo API
 
-## 📋 Funcionalidades
+## 📋 Funcionalidadess
 
 - Dashboard de automação residencial
 - Cadastro de dispositivos
