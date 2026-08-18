@@ -12,6 +12,14 @@ Sistema web para gerenciamento e monitoramento de dispositivos de automação re
 
 ![Dashboard do SmartHomeDashboard](Docs/dashboard.png)
 
+## 📌 Sobre o projeto
+
+O SmartHomeDashboard é uma aplicação web desenvolvida para simular o gerenciamento e monitoramento de dispositivos de uma residência inteligente.
+
+A aplicação utiliza ASP.NET Core MVC para a estrutura web, Entity Framework Core para acesso e persistência de dados e SQL Server como banco de dados.
+
+O sistema permite gerenciar dispositivos por meio de operações CRUD e também consome uma API externa de clima utilizando HttpClient, exibindo informações como temperatura e umidade no Dashboard.
+
 ## 🚀 Tecnologias utilizadas
 
 - C#
