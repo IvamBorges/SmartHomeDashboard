@@ -2,6 +2,11 @@
 
 Sistema web para gerenciamento e monitoramento de dispositivos de automação residencial, desenvolvido como projeto de estudo e portfólio.
 
+## 🖥️ Demonstração
+
+![Dashboard do SmartHomeDashboard](docs/dashboard.png)
+
+
 ## 🚀 Tecnologias utilizadas
 
 - C#
