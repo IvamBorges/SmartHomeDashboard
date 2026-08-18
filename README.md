@@ -4,7 +4,7 @@ Sistema web para gerenciamento e monitoramento de dispositivos de automação re
 
 ## 🖥️ Demonstração
 
-![Dashboard do SmartHomeDashboard](docs/dashboard.png)
+![Dashboard do SmartHomeDashboard](Docs/dashboard.png)
 
 ## 🚀 Tecnologias utilizadas
 
